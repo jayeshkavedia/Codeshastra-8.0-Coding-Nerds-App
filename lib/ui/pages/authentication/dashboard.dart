@@ -9,7 +9,7 @@ import 'package:cred/core/Extensions.dart';
 import 'package:cred/core/AppConstants.dart';
 import 'package:cred/ui/pages/centraltab/CentralPage.dart';
 import 'package:cred/core/BottomBarClipper.dart';
-import 'package:sms/generated/i18n.dart';
+import 'package:cred/ui/pages/ocr/ocrRead.dart';
 import 'package:sms/sms.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -70,7 +70,7 @@ class _DashboardPageState extends State<DashboardPage> {
       HomePage(),
       CardsPage(),
       Container(),
-      MoneyPage(),
+      OCRPage(),
       ClubPage()
     ];
 

@@ -94,7 +94,7 @@ class CentralPage extends StatelessWidget {
                       physics: NeverScrollableScrollPhysics(),
                       crossAxisSpacing: 4,
                       mainAxisSpacing: 8,
-                      children: List.generate(2, (index) {
+                      children: List.generate(4, (index) {
                         return _tile(bottomSheetRecommendedList[index % 5]);
                       }),
                       //),

@@ -19,6 +19,7 @@ import 'package:get/get.dart';
 import 'ui/pages/authentication/welcome_screen.dart';
 import 'ui/pages/authentication/dashboard.dart';
 
+
 void main() {
   runApp(MyApp());
 }
