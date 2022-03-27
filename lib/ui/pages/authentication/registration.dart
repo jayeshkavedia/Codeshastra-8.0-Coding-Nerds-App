@@ -4,6 +4,8 @@ import 'package:cred/components/rounded_button.dart';
 import 'package:cred/core/AppConstants.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
@@ -22,6 +24,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String lName;
   String contact;
   bool isLoading = false;
+
+  Future<http.Response> createAlbum(String username, String password, String fName, String lName, String contact) {
+    return http.post(
+      Uri.parse('$BaseURL/users/signUp'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': email,
+        'password' : password,
+        'fname' : fName,
+        'lname' : lName,
+        'phoneNo' : contact,
+       }),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +136,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
               RoundedButton(
                 title: 'Proceed',
-                onPressed: ()  {
+                onPressed:  ()  async {
+                  http.Response myBody = await createAlbum(email,password,fName,lName,contact);
                   emailController.clear();
                   passwordController.clear();
                   lnameController.clear();

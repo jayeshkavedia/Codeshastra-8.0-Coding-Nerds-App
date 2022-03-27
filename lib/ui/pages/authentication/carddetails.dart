@@ -4,6 +4,8 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:cred/core/AppConstants.dart';
 import 'package:cred/core/Extensions.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class CardDetails extends StatefulWidget {
   @override
@@ -21,6 +23,18 @@ class _CardDetailsState extends State<CardDetails> {
   OutlineInputBorder border;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  Future<http.Response> createAlbum(String cardNumber, {String bankName = 'ICICI Bank'}) {
+    return http.post(
+      Uri.parse('$BaseURL/users/updateProfile'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'bankName': bankName,
+        'cardNumber' : cardNumber,
+      }),
+    );
+  }
   @override
   void initState() {
     border = OutlineInputBorder(
@@ -188,12 +202,8 @@ class _CardDetailsState extends State<CardDetails> {
                               ),
                             ),
                           ),
-                          onPressed: () {
-                            if (formKey.currentState.validate()) {
-                              print('valid!');
-                            } else {
-                              print('invalid!');
-                            }
+                          onPressed: () async {
+                            http.Response myBody = await createAlbum(cardNumber);
                             Get.toNamed(RouteDashboard);
                           },
                         ),

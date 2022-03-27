@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class HomeAdvCardModel extends StatefulWidget {
-  const HomeAdvCardModel({Key key, @required this.homeAdvModel, @required this.callback}) : super(key: key);
+  const HomeAdvCardModel({Key key, @required this.homeAdvModel, @required this.callback, @required this.imgPath}) : super(key: key);
   final HomeAdvModel homeAdvModel;
   final Function callback;
+  final String imgPath;
 
   @override
   State<HomeAdvCardModel> createState() => _HomeAdvCardModelState();
@@ -30,7 +31,7 @@ class _HomeAdvCardModelState extends State<HomeAdvCardModel> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 32),
         child: Center(
-          child: Image.asset("assets/images/amazonpay_gc.png"),
+          child: Image.network(widget.imgPath??"https://www.icicibank.com//managed-assets/images/offer-zone/credit-debit-card/electro-thrusday-offer/electro-croma-thrusday-offer-t.jpg"),
         ),
       ),
     );

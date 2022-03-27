@@ -1,6 +1,6 @@
 import 'package:cred/core/Extensions.dart';
 import 'package:flutter/material.dart';
-
+final String BaseURL = 'https://zepp-node-backend.herokuapp.com';
 final String DarkBackground = "#212325";
 final String ExtraDarkBackground = "#1d1f21";
 final String CardShadow = "#34495E";
@@ -69,6 +69,7 @@ MaterialColor darkMaterialBlack = const MaterialColor(
 );
 
 // Routes
+
 String RouteDashboard = "/dashboard";
 String RouteHome = "/home";
 String RouteCards = "/cards";

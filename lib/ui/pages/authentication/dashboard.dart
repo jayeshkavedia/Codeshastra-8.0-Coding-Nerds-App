@@ -4,13 +4,14 @@ import 'package:get/get.dart';
 import 'package:cred/ui/pages/home/HomePage.dart';
 import 'package:cred/ui/pages/cards/CardsPage.dart';
 import 'package:cred/ui/pages/club/ClubPage.dart';
-import 'package:cred/ui/pages/money/MoneyPage.dart';
 import 'package:cred/core/Extensions.dart';
 import 'package:cred/core/AppConstants.dart';
 import 'package:cred/ui/pages/centraltab/CentralPage.dart';
 import 'package:cred/core/BottomBarClipper.dart';
 import 'package:cred/ui/pages/ocr/ocrRead.dart';
 import 'package:sms/sms.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key key}) : super(key: key);
@@ -23,12 +24,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   SmsQuery query = SmsQuery();
   List  allmessages;
-
-  @override
-  void initState() {
-    getAllMessages();
-    super.initState();
-  }
 
   void getAllMessages(){
     Future.delayed(Duration.zero,() async {
@@ -47,6 +42,16 @@ class _DashboardPageState extends State<DashboardPage> {
 
     });
   }
+
+
+
+  @override
+  void initState() {
+    getAllMessages();
+    super.initState();
+  }
+
+
 
   List getData(messages){
     List l = [];
@@ -70,7 +75,8 @@ class _DashboardPageState extends State<DashboardPage> {
       HomePage(),
       CardsPage(),
       Container(),
-      OCRPage(),
+      // OCRPage(),
+      ClubPage(),
       ClubPage()
     ];
 
@@ -92,7 +98,7 @@ class _DashboardPageState extends State<DashboardPage> {
         children: [
           IconButton(icon: Image.asset("assets/images/icon_options.png",), onPressed: () { _onBottomTabPressed(0); }),
           IconButton(icon: Image.asset("assets/images/icon_cc.png"), onPressed: () { _onBottomTabPressed(1); }),
-          IconButton(icon: Image.asset("assets/images/icon_cred_golden.png"), onPressed: () { _showBottomSheet(); }),
+          IconButton(icon: Image.asset("assets/images/zepp-app.png"), onPressed: () { _showBottomSheet(); }),
           IconButton(icon: Image.asset("assets/images/bank_colored.png"), onPressed: () { _onBottomTabPressed(3); }),
           IconButton(icon: Image.asset("assets/images/icon_club.png"), onPressed: () { _onBottomTabPressed(4); }),
         ],

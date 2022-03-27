@@ -6,10 +6,31 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cred/ui/widgets/Loader.dart';
 import 'package:cred/ui/widgets/NewCCWidget.dart';
 import 'package:cred/ui/pages/cards/tabs/mycards/MyCardsController.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class CardsPage extends StatelessWidget {
+class CardsPage extends StatefulWidget {
   const CardsPage({Key key}) : super(key: key);
 
+  @override
+  State<CardsPage> createState() => _CardsPageState();
+}
+
+class _CardsPageState extends State<CardsPage> {
+  List coupons;
+  Future<void> receiveData() async {
+    var url = '$BaseURL/users/cards/';
+    http.Response response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      var x = jsonDecode(response.body);
+      setState(() {
+        coupons = x['coupons'];
+        print(coupons);
+      });
+    } else {
+      print(response.statusCode);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
